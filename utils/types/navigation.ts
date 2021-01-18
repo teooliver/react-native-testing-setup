@@ -8,3 +8,8 @@ type RootStackParamList = {
   Profile: { userId: string };
   Feed: { sort: 'latest' | 'top' } | undefined;
 };
+
+type AuthStackParamList = {
+  Login: undefined;
+  Register: undefined;
+};
