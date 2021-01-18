@@ -62,4 +62,21 @@ describe('Router', () => {
     const newHeader = getByText('Details Screen');
     expect(newHeader).toBeTruthy();
   });
+
+  it('Calls navigation with the Home args', () => {
+    const navigate = jest.fn();
+    const component = (
+      <NavigationContainer>
+        <Details navigation={{ navigate }} route={{ params: { itemId: 86 } }} />
+      </NavigationContainer>
+    );
+
+    const { getByText } = render(component);
+    const navigationBtn = getByText('Go to Details... again');
+
+    fireEvent(navigationBtn, 'press');
+    expect(navigate).toHaveBeenCalledWith('Details');
+    const newHeader = getByText('Details Screen 2');
+    expect(newHeader).toBeTruthy();
+  });
 });
