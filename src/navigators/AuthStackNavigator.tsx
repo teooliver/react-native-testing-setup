@@ -5,7 +5,7 @@ import { Register } from '../screens/Register/Register';
 
 export const AuthStack = createStackNavigator<AuthStackParamList>();
 
-export const AppStackNavigator = () => {
+export const AuthStackNavigator = () => {
   return (
     <AuthStack.Navigator
       initialRouteName='Login'
