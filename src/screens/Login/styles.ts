@@ -1,18 +1,22 @@
 import { StyleSheet, Platform } from 'react-native';
 
 export const styles = StyleSheet.create({
+  keyboardAvoid: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: '#000000',
   },
   header: {
     flex: 1,
-    justifyContent: 'flex-end',
+    // justifyContent: 'flex-end',
+    marginTop: 80,
     paddingHorizontal: 20,
-    paddingBottom: 50,
+    // paddingBottom: 50,
   },
   footer: {
-    flex: 3,
+    // flex: 1,
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,

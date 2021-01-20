@@ -12,6 +12,9 @@ import {
   StatusBar,
   Dimensions,
   Alert,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,6 +22,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { styles } from './styles';
 import { AuthContext } from '../../context/AuthContext';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface Props {
   navigation: StackNavigationProp<AuthStackParamList, 'Login'>;
@@ -52,7 +56,12 @@ export const Login: FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      {/* <View style={styles.container}> */}
+
       <StatusBar backgroundColor='#009387' barStyle='light-content' />
       <TouchableOpacity
         onPress={() => navigation.goBack()}
@@ -67,58 +76,62 @@ export const Login: FC<Props> = ({ navigation }) => {
       >
         <Feather name='chevron-left' color='grey' size={25} />
       </TouchableOpacity>
+
       <View style={styles.header}>
         <Text style={styles.text_header}>Login</Text>
       </View>
-
-      <Animatable.View animation='fadeInUpBig' style={styles.footer}>
-        <Text style={styles.text_footer}>Email</Text>
-        <View style={styles.action}>
-          <FontAwesome name='user-o' color='#05375a' size={20} />
-          <TextInput
-            placeholder='Your Email'
-            style={styles.textInput}
-            autoCapitalize='none'
-            onChangeText={(text) => handleEmail(text)}
-          />
-          {isValid ? (
-            <Animatable.View animation='bounceIn'>
-              <Feather name='check-circle' color='green' size={20} />
-            </Animatable.View>
-          ) : null}
-        </View>
-        <Text style={{ ...styles.text_footer, marginTop: 35 }}>Password</Text>
-        <View style={styles.action}>
-          <FontAwesome name='lock' color='#05375a' size={20} />
-          <TextInput
-            placeholder='Your Password'
-            secureTextEntry={isPasswordVisible}
-            style={styles.textInput}
-            autoCapitalize='none'
-            onChangeText={(text) => handlePassword(text)}
-          />
-          <TouchableOpacity
-            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
-          >
-            {isPasswordVisible ? (
-              <Feather name='eye-off' color='grey' size={20} />
-            ) : (
-              <Feather name='eye' color='grey' size={20} />
-            )}
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.button}>
-          <TouchableOpacity style={styles.signIn} onPress={handleLogin}>
-            <LinearGradient
-              colors={['#4c669f', '#3b5998', '#192f6a']}
-              style={styles.signIn}
+      <Animatable.View animation='fadeInUpBig'>
+        <ScrollView keyboardShouldPersistTaps='handled' style={styles.footer}>
+          <Text style={styles.text_footer}>Email</Text>
+          <View style={styles.action}>
+            <FontAwesome name='user-o' color='#05375a' size={20} />
+            <TextInput
+              placeholder='Your Email'
+              style={styles.textInput}
+              autoCapitalize='none'
+              onChangeText={(text) => handleEmail(text)}
+            />
+            {isValid ? (
+              <Animatable.View animation='bounceIn'>
+                <Feather name='check-circle' color='green' size={20} />
+              </Animatable.View>
+            ) : null}
+          </View>
+          <Text style={{ ...styles.text_footer, marginTop: 35 }}>Password</Text>
+          <View style={styles.action}>
+            <FontAwesome name='lock' color='#05375a' size={20} />
+            <TextInput
+              placeholder='Your Password'
+              secureTextEntry={isPasswordVisible}
+              style={styles.textInput}
+              autoCapitalize='none'
+              onChangeText={(text) => handlePassword(text)}
+            />
+            <TouchableOpacity
+              onPress={() => setIsPasswordVisible(!isPasswordVisible)}
             >
-              <Text style={{ ...styles.textSign, color: '#fff' }}>Sign In</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        </View>
+              {isPasswordVisible ? (
+                <Feather name='eye-off' color='grey' size={20} />
+              ) : (
+                <Feather name='eye' color='grey' size={20} />
+              )}
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.button}>
+            <TouchableOpacity style={styles.signIn} onPress={handleLogin}>
+              <LinearGradient
+                colors={['#4c669f', '#3b5998', '#192f6a']}
+                style={styles.signIn}
+              >
+                <Text style={{ ...styles.textSign, color: '#fff' }}>
+                  Sign In
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </Animatable.View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };

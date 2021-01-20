@@ -2,22 +2,27 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppStackNavigator } from './src/navigators/AppStackNavigator';
+import { AuthStackNavigator } from './src/navigators/AuthStackNavigator';
 
 import App from './App';
 import Test from './src/screens/Test';
 import { Home } from './src/screens/Home/Home';
 import { Details } from './src/screens/Details/Details';
+import { AuthProvider, AuthContext } from './src/context/AuthContext';
 
 describe('Router', () => {
   it('Renders without crash', () => {
     const component = (
-      <NavigationContainer>
-        <AppStackNavigator />
-      </NavigationContainer>
+      <AuthContext.Provider>
+        <NavigationContainer>
+          {/* <AppStackNavigator /> */}
+          <AuthStackNavigator />
+        </NavigationContainer>
+      </AuthContext.Provider>
     );
 
     const { getByText } = render(component);
-    const screenTitle = getByText('Home Screen');
+    const screenTitle = getByText('Welcome');
     expect(screenTitle).toBeTruthy();
   });
 
