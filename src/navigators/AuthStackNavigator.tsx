@@ -7,18 +7,7 @@ export const AuthStack = createStackNavigator<AuthStackParamList>();
 
 export const AuthStackNavigator = () => {
   return (
-    <AuthStack.Navigator
-      initialRouteName='Login'
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#f4511e',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
-    >
+    <AuthStack.Navigator initialRouteName='Login' headerMode='none'>
       <AuthStack.Screen
         name='Login'
         component={Login}

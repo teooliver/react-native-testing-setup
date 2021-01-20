@@ -1,8 +1,9 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { AuthContext } from '../../context/AuthContext';
 import { styles } from './styles';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export const Home: FC<Props> = ({ navigation }) => {
+  const { logout } = useContext(AuthContext);
   useEffect(() => {
     runConsole('Hello');
   }, []);
@@ -27,6 +29,7 @@ export const Home: FC<Props> = ({ navigation }) => {
         title='Go to Details'
         onPress={() => navigation.navigate('Details', { itemId: 86 })}
       />
+      <Button title='Logout' onPress={logout} />
     </View>
   );
 };
