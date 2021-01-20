@@ -54,9 +54,23 @@ export const Login: FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor='#009387' barStyle='light-content' />
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={{
+          position: 'absolute',
+          zIndex: 10,
+          top: 40,
+          left: 15,
+          backgroundColor: 'rgba(158, 158, 158, 0.11)',
+          borderRadius: 50,
+        }}
+      >
+        <Feather name='chevron-left' color='grey' size={25} />
+      </TouchableOpacity>
       <View style={styles.header}>
-        <Text style={styles.text_header}>Welcome</Text>
+        <Text style={styles.text_header}>Login</Text>
       </View>
+
       <Animatable.View animation='fadeInUpBig' style={styles.footer}>
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
@@ -102,19 +116,6 @@ export const Login: FC<Props> = ({ navigation }) => {
             >
               <Text style={{ ...styles.textSign, color: '#fff' }}>Sign In</Text>
             </LinearGradient>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Register')}
-            style={{
-              ...styles.signIn,
-              borderColor: '#009387',
-              borderWidth: 1,
-              marginTop: 15,
-            }}
-          >
-            <Text style={{ ...styles.textSign, color: '#009387' }}>
-              Sign Up
-            </Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>

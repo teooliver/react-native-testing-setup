@@ -10,6 +10,7 @@ type RootStackParamList = {
 };
 
 type AuthStackParamList = {
+  Welcome: undefined;
   Login: undefined;
   Register: undefined;
 };

@@ -2,12 +2,20 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Login } from '../screens/Login/Login';
 import { Register } from '../screens/Register/Register';
+import { Welcome } from '../screens/Welcome/Welcome';
 
 export const AuthStack = createStackNavigator<AuthStackParamList>();
 
 export const AuthStackNavigator = () => {
   return (
-    <AuthStack.Navigator initialRouteName='Login' headerMode='none'>
+    <AuthStack.Navigator initialRouteName='Welcome' headerMode='none'>
+      <AuthStack.Screen
+        name='Welcome'
+        component={Welcome}
+        options={{
+          title: 'Welcome',
+        }}
+      />
       <AuthStack.Screen
         name='Login'
         component={Login}
