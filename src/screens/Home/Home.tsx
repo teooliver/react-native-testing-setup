@@ -14,12 +14,14 @@ interface Props {
 export const Home: FC<Props> = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
   useEffect(() => {
-    runConsole('Hello');
+    // runConsole('Hello');
   }, []);
 
   const runConsole = (log: string) => {
     console.log(log);
   };
+
+  console.log('From Login Test');
 
   return (
     <View style={styles.container} testID='Home'>

@@ -125,7 +125,7 @@ export const Login: FC<Props> = ({ navigation }) => {
                 style={styles.signIn}
               >
                 <Text style={{ ...styles.textSign, color: '#fff' }}>
-                  Sign In
+                  Log In
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
