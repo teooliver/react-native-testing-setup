@@ -19,22 +19,21 @@ describe('Login Screen', () => {
       </AuthProvider>
     );
 
-    const { getByText, getByTestId } = render(component);
-    const screenTitle = getByText('Welcome');
+    const { getByText, getByTestId, findByText } = render(component);
+    const screenTitle = await findByText('Welcome');
     expect(screenTitle).toBeTruthy();
 
     const signInBtn = getByText('Sign In');
     fireEvent(signInBtn, 'press');
 
-    const newHeader = getByText('Login');
+    const newHeader = await findByText('Login');
     expect(newHeader).toBeTruthy();
 
     const loginBtn = getByText('Log In');
-    act(() => {
-      /* fire events that update state */
+    await act(async () => {
       fireEvent(loginBtn, 'press');
     });
 
-    // await waitFor(() => expect(getByTestId('Home')).toBeTruthy());
+    await waitFor(() => expect(getByTestId('Home')).toBeTruthy());
   });
 });
