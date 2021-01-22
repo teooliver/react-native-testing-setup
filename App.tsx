@@ -9,6 +9,7 @@ import { Asset } from 'expo-asset';
 import AppLoading from 'expo-app-loading';
 import { Login } from './src/screens/Login/Login';
 import Routes from './src/routes/Routes';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 function cacheImages(images: any[]) {
   return images.map((image) => {
@@ -20,6 +21,8 @@ function cacheImages(images: any[]) {
     }
   });
 }
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -44,7 +47,9 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <Routes />
+      <QueryClientProvider client={queryClient}>
+        <Routes />
+      </QueryClientProvider>
     </AuthProvider>
   );
   // return (
