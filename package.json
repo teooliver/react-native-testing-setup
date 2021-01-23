@@ -7,7 +7,9 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
-    "watch:test": "jest --watch"
+    "watch:test": "jest --watch",
+    "test:clearCache": "jest --clearCache",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@react-native-community/async-storage": "~1.12.0",
@@ -35,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@testing-library/jest-native": "^3.4.3",
     "@testing-library/react-native": "^7.0.2",
     "@types/jest": "^26.0.20",
     "@types/react": "^17.0.0",

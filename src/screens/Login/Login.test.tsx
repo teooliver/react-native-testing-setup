@@ -1,9 +1,15 @@
 import React from 'react';
-import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
+import {
+  render,
+  fireEvent,
+  waitFor,
+  act,
+  cleanup,
+} from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { AuthStackNavigator } from '../../../navigators/AuthStackNavigator';
-import { AuthContext, AuthProvider } from '../../../context/AuthContext';
-import Routes from '../../../routes/Routes';
+import { AuthStackNavigator } from '../../navigators/AuthStackNavigator';
+import { AuthContext, AuthProvider } from '../../context/AuthContext';
+import Routes from '../../routes/Routes';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -20,6 +26,7 @@ beforeAll(() => {
 });
 
 describe('Login Screen', () => {
+  afterEach(cleanup);
   it('Can login', async () => {
     const component = (
       <QueryClientProvider client={queryClient}>
@@ -29,8 +36,7 @@ describe('Login Screen', () => {
       </QueryClientProvider>
     );
 
-    // screen.debug();
-    const { getByText, getByTestId, findByText } = render(component);
+    const { getByText, getByTestId, findByText, debug } = render(component);
     const screenTitle = await findByText('Welcome');
     expect(screenTitle).toBeTruthy();
 
@@ -45,6 +51,7 @@ describe('Login Screen', () => {
       fireEvent(loginBtn, 'press');
     });
 
+    debug();
     await waitFor(() => expect(getByTestId('Home')).toBeTruthy());
   });
 });

@@ -1,19 +1,26 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import {
+  render,
+  fireEvent,
+  waitFor,
+  cleanup,
+} from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { AppStackNavigator } from '../src/navigators/AppStackNavigator';
-import { AuthStackNavigator } from '../src/navigators/AuthStackNavigator';
+import { AppStackNavigator } from './src/navigators/AppStackNavigator';
+import { AuthStackNavigator } from './src/navigators/AuthStackNavigator';
 
-import App from '../App';
-import Test from '../src/screens/Test';
-import { Home } from '../src/screens/Home/Home';
-import { Details } from '../src/screens/Details/Details';
-import { AuthProvider, AuthContext } from '../src/context/AuthContext';
+import App from './App';
+import Test from './src/screens/Test';
+import { Home } from './src/screens/Home/Home';
+import { Details } from './src/screens/Details/Details';
+import { AuthProvider, AuthContext } from './src/context/AuthContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const queryClient = new QueryClient();
 
 afterEach(() => {
+  // queryCach;
   // console.log('AFFFFFFFTTTTTTTTTTTTTEEEREEERERRREREr');
 });
 
@@ -24,16 +31,17 @@ beforeAll(() => {
 });
 
 describe('Router', () => {
+  afterEach(cleanup);
   it('Renders without crash', () => {
     const component = (
-      <AuthContext.Provider>
+      <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <NavigationContainer>
             {/* <AppStackNavigator /> */}
             <AuthStackNavigator />
           </NavigationContainer>
         </QueryClientProvider>
-      </AuthContext.Provider>
+      </AuthProvider>
     );
 
     const { getByText } = render(component);
@@ -90,7 +98,7 @@ describe('Router', () => {
   });
 
   it('Calls navigation with the Home args', () => {
-    const navigate = jest.fn();
+    const navigate = jest.fn(() => {});
     const component = (
       <QueryClientProvider client={queryClient}>
         <NavigationContainer>
