@@ -35,25 +35,60 @@ export const Login: FC<Props> = ({ navigation }) => {
     email: '',
     password: '',
   });
+
   const [isValid, setIsValid] = useState(false);
+  const [isValidUser, setIsValidUser] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
+
   const { login } = useContext(AuthContext);
 
   const handleEmail = (email: string) => {
-    if (email.length !== 0) {
-      setFormData({ ...formData, email: email });
+    if (email.trim().length >= 4) {
+      setIsValidUser(true);
       setIsValid(true);
     } else {
+      setIsValidUser(false);
       setIsValid(false);
     }
+    setFormData({ ...formData, email: email });
   };
 
   const handlePassword = (password: string) => {
+    if (password.trim().length >= 8) {
+      setIsValidPassword(true);
+      // setIsValid(true);
+    } else {
+      setIsValidPassword(false);
+      // setIsValid(false);
+    }
     setFormData({ ...formData, password: password });
   };
 
   const handleLogin = () => {
+    if (formData.email.length === 0 || formData.password.length === 0) {
+      Alert.alert(
+        'Wrong Input!',
+        'Username or password field cannot be empty.',
+        [{ text: 'Okay' }]
+      );
+      return;
+    }
+    if (!isValidUser || !isValidPassword) {
+      Alert.alert('Invalid User!', 'Username or password is incorrect.', [
+        { text: 'Okay' },
+      ]);
+      return;
+    }
     login();
   };
+
+  // const handleValidateUser = (text: string) => {
+  //   if (text.length >= 4) {
+  //     setIsValidUser(true);
+  //   } else {
+  //     setIsValidUser(false);
+  //   }
+  // };
 
   return (
     <KeyboardAvoidingView
@@ -90,6 +125,7 @@ export const Login: FC<Props> = ({ navigation }) => {
               style={styles.textInput}
               autoCapitalize='none'
               onChangeText={(text) => handleEmail(text)}
+              // onEndEditing={(e) => handleValidateUser(e.nativeEvent.text)}
             />
             {isValid ? (
               <Animatable.View animation='bounceIn'>
@@ -97,6 +133,13 @@ export const Login: FC<Props> = ({ navigation }) => {
               </Animatable.View>
             ) : null}
           </View>
+          {!isValidUser ? (
+            <Animatable.View animation='fadeInLeft' duration={500}>
+              <Text style={styles.errorMsg}>
+                Username must be 4 characters long
+              </Text>
+            </Animatable.View>
+          ) : null}
           <Text style={{ ...styles.text_footer, marginTop: 35 }}>Password</Text>
           <View style={styles.action}>
             <FontAwesome name='lock' color='#05375a' size={20} />
@@ -117,7 +160,13 @@ export const Login: FC<Props> = ({ navigation }) => {
               )}
             </TouchableOpacity>
           </View>
-
+          {!isValidPassword ? (
+            <Animatable.View animation='fadeInLeft' duration={500}>
+              <Text style={styles.errorMsg}>
+                Password must be 8 characters long
+              </Text>
+            </Animatable.View>
+          ) : null}
           <View style={styles.button}>
             <TouchableOpacity style={styles.signIn} onPress={handleLogin}>
               <LinearGradient
