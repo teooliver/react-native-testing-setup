@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useGetTitles } from '../../hooks/useGetTitles';
 import { Home } from './Home';
 import { mockData } from '../../../mocks/api/mockData';
+import { IMockUseGetTitles } from '../../../mocks/types/IMockUseGetTitles';
 
 // const mockedUseGetTitles = useGetTitles as jest.Mock;
 
@@ -24,11 +25,14 @@ jest.mock('../../hooks/useGetTitles.tsx');
 
 it('Renders Home without crashing', async () => {
   // @ts-ignore
-  useGetTitles.mockImplementation(() => ({
-    data: mockData,
-    isLoading: false,
-    isSuccess: true,
-  }));
+  useGetTitles.mockImplementation(
+    (): IMockUseGetTitles => ({
+      data: mockData,
+      isLoading: false,
+      isSuccess: true,
+      isError: false,
+    })
+  );
 
   const component = (
     // <QueryClientProvider client={queryClient}>
@@ -38,11 +42,10 @@ it('Renders Home without crashing', async () => {
     // </QueryClientProvider>
   );
 
-  const { getByText, debug, findByText } = render(component);
+  const { getByText, findByText } = render(component);
   const screenTitle = getByText('Home Screen');
   expect(screenTitle).toBeTruthy();
 
-  debug();
   const item = await findByText(
     /The Lord of the Rings: The Return of the King/i
   );
