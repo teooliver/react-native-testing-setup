@@ -51,3 +51,30 @@ it('Renders Home without crashing', async () => {
   );
   expect(item).toBeTruthy();
 });
+
+it('Shows spinner while loading', async () => {
+  // @ts-ignore
+  useGetTitles.mockImplementation(
+    (): IMockUseGetTitles => ({
+      data: mockData,
+      isLoading: true,
+      isSuccess: false,
+      isError: false,
+    })
+  );
+
+  const component = (
+    // <QueryClientProvider client={queryClient}>
+    <NavigationContainer>
+      <Home />
+    </NavigationContainer>
+    // </QueryClientProvider>
+  );
+
+  const { getByText, getByTestId } = render(component);
+  const screenTitle = getByText('Home Screen');
+  expect(screenTitle).toBeTruthy();
+
+  const spinner = await getByTestId('Spinner');
+  expect(spinner).toBeTruthy();
+});

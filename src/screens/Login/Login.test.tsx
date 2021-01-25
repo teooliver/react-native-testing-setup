@@ -15,12 +15,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
 
-afterEach(() => {
-  // console.log('AFFFFFFFTTTTTTTTTTTTTEEEREEERERRREREr');
-});
+afterEach(() => {});
 
 beforeAll(() => {
-  // console.log('HELLLLLLLLLLLLLLLLLLLLOOOOOOOOOOOO');
   jest.spyOn(global.console, 'warn').mockImplementation(() => {});
   jest.spyOn(global.console, 'error').mockImplementation(() => {});
 });
@@ -51,7 +48,7 @@ describe('Login Screen', () => {
       fireEvent(loginBtn, 'press');
     });
 
-    debug();
+    // debug();
     await waitFor(() => expect(getByTestId('Home')).toBeTruthy());
   });
 });

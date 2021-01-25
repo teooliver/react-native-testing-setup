@@ -19,13 +19,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 const queryClient = new QueryClient();
 
-afterEach(() => {
-  // queryCach;
-  // console.log('AFFFFFFFTTTTTTTTTTTTTEEEREEERERRREREr');
-});
+afterEach(() => {});
 
 beforeAll(() => {
-  // console.log('HELLLLLLLLLLLLLLLLLLLLOOOOOOOOOOOO');
   jest.spyOn(global.console, 'warn').mockImplementation(() => {});
   jest.spyOn(global.console, 'error').mockImplementation(() => {});
 });

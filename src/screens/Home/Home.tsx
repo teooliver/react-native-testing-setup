@@ -1,7 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useContext, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { FC, useContext, useEffect, useState } from 'react';
+import { View, Text, Button, ActivityIndicator } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { Titles } from '../../../utils/types/titles';
 import { AuthContext } from '../../context/AuthContext';
@@ -21,10 +21,7 @@ interface Props {
 
 export const Home: FC<Props> = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
-  const { data: titles, isLoading, isSuccess, isError } = useGetTitles();
-
-  console.log('Is Loading', isLoading);
-  console.log(titles);
+  const { data: titles, isSuccess, isLoading, isError } = useGetTitles();
 
   useEffect(() => {
     // runConsole('Hello');
@@ -40,6 +37,9 @@ export const Home: FC<Props> = ({ navigation }) => {
     <View style={styles.container} testID='Home'>
       <Text>Home Screen</Text>
       <TextInput placeholder='Test Input' />
+
+      {isLoading && <ActivityIndicator testID='Spinner' />}
+
       {isSuccess &&
         titles?.Search.map((title) => (
           <Text key={title.imdbID}>{title.Title}</Text>
