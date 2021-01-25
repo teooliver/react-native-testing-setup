@@ -1,24 +1,14 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+// import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from '../screens/Home/Home';
 import { Details } from '../screens/Details/Details';
 
-export const AppStack = createStackNavigator<RootStackParamList>();
+export const AppStack = createBottomTabNavigator<RootStackParamList>();
 
 export const AppStackNavigator = () => {
   return (
-    <AppStack.Navigator
-      initialRouteName='Home'
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#f4511e',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
-    >
+    <AppStack.Navigator initialRouteName='Home'>
       <AppStack.Screen
         name='Home'
         component={Home}

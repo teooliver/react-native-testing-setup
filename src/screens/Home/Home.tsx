@@ -23,6 +23,9 @@ export const Home: FC<Props> = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
   const { data: titles, isLoading, isSuccess, isError } = useGetTitles();
 
+  console.log('Is Loading', isLoading);
+  console.log(titles);
+
   useEffect(() => {
     // runConsole('Hello');
   }, []);

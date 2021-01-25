@@ -49,20 +49,6 @@ describe('Router', () => {
     expect(screenTitle).toBeTruthy();
   });
 
-  it('Renders Home without crashing', () => {
-    const component = (
-      <QueryClientProvider client={queryClient}>
-        <NavigationContainer>
-          <Home />
-        </NavigationContainer>
-      </QueryClientProvider>
-    );
-
-    const { getByText } = render(component);
-    const screenTitle = getByText('Home Screen');
-    expect(screenTitle).toBeTruthy();
-  });
-
   it('Renders Detail without crashing', () => {
     const component = (
       <QueryClientProvider client={queryClient}>
