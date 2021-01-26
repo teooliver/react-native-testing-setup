@@ -6,6 +6,8 @@ type RootStackParamList = {
   Home: undefined;
   Details: { itemId: number } | undefined;
   Profile: { userId: string };
+  Watchlist: undefined;
+  Search: undefined;
   Feed: { sort: 'latest' | 'top' } | undefined;
 };
 

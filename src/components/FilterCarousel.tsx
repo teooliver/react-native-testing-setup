@@ -16,7 +16,9 @@ const CAROUSEL_HEIGHT = height / 2;
 
 export const FilterCarousel: React.FC<Props> = ({ movies, carouselTitle }) => {
   return (
-    <View style={{ backgroundColor: 'black', marginVertical: 10 }}>
+    <View
+      style={{ backgroundColor: 'black', marginVertical: 20, borderRadius: 10 }}
+    >
       <Text
         style={{
           color: 'white',
@@ -37,31 +39,43 @@ export const FilterCarousel: React.FC<Props> = ({ movies, carouselTitle }) => {
           alignItems: 'center',
           marginVertical: SPACING,
           backgroundColor: 'black',
-          height: CAROUSEL_HEIGHT,
+          // height: CAROUSEL_HEIGHT,
         }}
         renderItem={(item) => {
           return (
             <View
               style={{
-                height: CAROUSEL_HEIGHT - 30,
-                width: ITEM_WIDTH,
-                padding: SPACING * 2,
+                // height: CAROUSEL_HEIGHT - 60,
+                // width: ITEM_WIDTH,
+                // padding: SPACING * 2,
                 marginHorizontal: SPACING,
-
                 alignItems: 'center',
-                borderRadius: 34,
-                backgroundColor: 'red',
+                borderRadius: 10,
+                // backgroundColor: 'red',
               }}
             >
               <Image
                 resizeMethod='auto'
                 resizeMode='center'
+                style={{
+                  // backgroundColor: 'blue',
+                  width: 120,
+                  height: 200,
+                }}
                 source={{
                   uri:
                     'https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg',
                 }}
               />
-              <Text>Helllo</Text>
+              <Text
+                style={{
+                  color: 'white',
+                  fontWeight: 'bold',
+                  width: 120,
+                }}
+              >
+                The Lord of the Rings: The Return of the King
+              </Text>
             </View>
           );
         }}

@@ -24,28 +24,13 @@ export const Home: FC<Props> = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
   const { data: titles, isSuccess, isLoading, isError } = useGetTitles();
 
-  useEffect(() => {
-    // runConsole('Hello');
-  }, []);
-
-  const runConsole = (log: string) => {
-    console.log(log);
-  };
-
-  // console.log('From Login Test');
-
   return (
     <View style={styles.container} testID='Home'>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text>Home Screen</Text>
-        <TextInput placeholder='Test Input' />
 
         {isLoading && <ActivityIndicator testID='Spinner' />}
 
-        {/* {isSuccess &&
-        titles?.Search.map((title) => (
-          <Text key={title.imdbID}>{title.Title}</Text>
-        ))} */}
         {isSuccess && titles?.Search && (
           <FilterCarousel movies={titles.Search} carouselTitle='Top 10 UK' />
         )}
