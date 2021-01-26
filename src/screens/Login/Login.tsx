@@ -79,7 +79,7 @@ export const Login: FC<Props> = ({ navigation }) => {
       ]);
       return;
     }
-    login();
+    login(formData.email, formData.password);
   };
 
   // const handleValidateUser = (text: string) => {
@@ -94,6 +94,7 @@ export const Login: FC<Props> = ({ navigation }) => {
     <KeyboardAvoidingView
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       style={styles.container}
+      testID='Login'
     >
       {/* <View style={styles.container}> */}
 
@@ -121,6 +122,7 @@ export const Login: FC<Props> = ({ navigation }) => {
           <View style={styles.action}>
             <FontAwesome name='user-o' color='#05375a' size={20} />
             <TextInput
+              testID='emailInput'
               placeholder='Your Email'
               style={styles.textInput}
               autoCapitalize='none'
@@ -144,6 +146,7 @@ export const Login: FC<Props> = ({ navigation }) => {
           <View style={styles.action}>
             <FontAwesome name='lock' color='#05375a' size={20} />
             <TextInput
+              testID='passwordInput'
               placeholder='Your Password'
               secureTextEntry={isPasswordVisible}
               style={styles.textInput}

@@ -5,7 +5,7 @@ type User = null | { username: string };
 
 interface AuthContextDefaults {
   user: User;
-  login: () => void;
+  login: (username: string, password: string) => void;
   logout: () => void;
 }
 
@@ -22,10 +22,12 @@ interface AuthContextProps {
 export const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
   const [user, setUser] = useState<User>(null);
 
-  const login = () => {
-    const fakeUser = { username: 'bob' };
-    setUser(fakeUser);
-    AsyncStorage.setItem('user', JSON.stringify(fakeUser));
+  const login = (username: string, password: string) => {
+    if (username === 'teo@test.com' && password === '123qweasd') {
+      let fakeUser = { username };
+      setUser(fakeUser);
+      AsyncStorage.setItem('user', JSON.stringify(fakeUser));
+    }
   };
 
   const logout = () => {
