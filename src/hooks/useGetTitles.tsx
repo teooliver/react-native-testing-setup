@@ -7,6 +7,10 @@ const getTitles = async () => {
   return res as Titles;
 };
 
+/**
+ * Gets all Titles.
+ * Returns: data, isLoading, isSuccess, isError
+ */
 export const useGetTitles = () => {
   return useQuery('titles', getTitles);
 };

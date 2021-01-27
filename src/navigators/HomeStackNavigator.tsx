@@ -3,19 +3,24 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Login } from '../screens/Login/Login';
 import { Register } from '../screens/Register/Register';
 import { Welcome } from '../screens/Welcome/Welcome';
-import { Home } from '../screens/Home/Home';
+import { Feed } from '../screens/Feed/Feed';
 import { Details } from '../screens/Details/Details';
+
+export type HomeStackParamList = {
+  Feed: undefined;
+  Details: { titleId: string };
+};
 
 export const HomeStack = createStackNavigator<HomeStackParamList>();
 
-export const AuthStackNavigator = () => {
+export const HomeStackNavigator = () => {
   return (
-    <HomeStack.Navigator initialRouteName='Home' headerMode='none'>
+    <HomeStack.Navigator initialRouteName='Feed' headerMode='none'>
       <HomeStack.Screen
-        name='Home'
-        component={Home}
+        name='Feed'
+        component={Feed}
         options={{
-          title: 'Home',
+          title: 'Feed',
         }}
       />
       <HomeStack.Screen

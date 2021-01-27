@@ -4,6 +4,12 @@ import { Login } from '../screens/Login/Login';
 import { Register } from '../screens/Register/Register';
 import { Welcome } from '../screens/Welcome/Welcome';
 
+export type AuthStackParamList = {
+  Welcome: undefined;
+  Login: undefined;
+  Register: undefined;
+};
+
 export const AuthStack = createStackNavigator<AuthStackParamList>();
 
 export const AuthStackNavigator = () => {

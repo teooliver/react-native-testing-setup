@@ -1,12 +1,21 @@
 import React from 'react';
-// import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home } from '../screens/Home/Home';
-import { Details } from '../screens/Details/Details';
 import { Search } from '../screens/Search/Search';
 import { Watchlist } from '../screens/Watchlist/Watchlist';
 import { Profile } from '../screens/Profile/Profile';
 import Feather from 'react-native-vector-icons/Feather';
+import { HomeStackNavigator } from './HomeStackNavigator';
+
+/* 
+Specifying undefined means that the route doesn't have params. 
+A union type with undefined (e.g. SomeType | undefined) means that params are optional.
+*/
+export type RootStackParamList = {
+  Home: undefined;
+  Profile: { userId: string };
+  Watchlist: undefined;
+  Search: undefined;
+};
 
 export const AppStack = createBottomTabNavigator<RootStackParamList>();
 
@@ -15,24 +24,14 @@ export const AppStackNavigator = () => {
     <AppStack.Navigator initialRouteName='Home'>
       <AppStack.Screen
         name='Home'
-        component={Home}
+        component={HomeStackNavigator}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => <Feather name='home' size={20} />,
         }}
         bar-chart-2
       />
-      {/* <AppStack.Screen
-        name='Details'
-        component={Details}
-        // @ts-ignore
-        options={{
-          tabBarLabel: 'Details',
-          tabBarIcon: ({ color, size }) => (
-            <Feather name='bar-chart-2' size={20} />
-          ),
-        }}
-      /> */}
+
       <AppStack.Screen
         name='Search'
         component={Search}

@@ -3,9 +3,10 @@ import { render } from '@testing-library/react-native';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useGetTitles } from '../../hooks/useGetTitles';
-import { Home } from './Home';
+
 import { mockData } from '../../../mocks/api/mockData';
 import { IMockUseGetTitles } from '../../../mocks/types/IMockUseGetTitles';
+import { Feed } from '../Feed/Feed';
 
 // const mockedUseGetTitles = useGetTitles as jest.Mock;
 
@@ -37,7 +38,7 @@ it('Renders Home without crashing', async () => {
   const component = (
     // <QueryClientProvider client={queryClient}>
     <NavigationContainer>
-      <Home />
+      <Feed />
     </NavigationContainer>
     // </QueryClientProvider>
   );
@@ -66,7 +67,7 @@ it('Shows spinner while loading', async () => {
   const component = (
     // <QueryClientProvider client={queryClient}>
     <NavigationContainer>
-      <Home />
+      <Feed />
     </NavigationContainer>
     // </QueryClientProvider>
   );

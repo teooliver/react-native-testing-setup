@@ -11,7 +11,7 @@ import { AuthStackNavigator } from './src/navigators/AuthStackNavigator';
 
 import App from './App';
 import Test from './src/screens/Test';
-import { Home } from './src/screens/Home/Home';
+import { Home } from './src/screens/Feed/Feed';
 import { Details } from './src/screens/Details/Details';
 import { AuthProvider, AuthContext } from './src/context/AuthContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
