@@ -16,3 +16,8 @@ type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
 };
+
+type HomeStackParamList = {
+  Home: undefined;
+  Details: { itemId: string } | undefined;
+};
