@@ -27,38 +27,44 @@ export const FilterCarousel: React.FC<Props> = ({
     navigation.navigate('Details', { titleId: titleId });
   };
 
+  const handleCarouselTitleClick = (carouselId: string) => {
+    navigation.navigate('CarouselGrid', { carouselId: carouselId });
+  };
+
   return (
     <View
       style={{ backgroundColor: 'black', marginVertical: 20, borderRadius: 10 }}
     >
-      <Text
-        style={{
-          color: 'white',
-          fontWeight: 'bold',
-          fontSize: 20,
-          paddingVertical: 10,
-          paddingHorizontal: 10,
-        }}
-      >
-        {carouselTitle}
-      </Text>
+      <TouchableOpacity onPress={() => handleCarouselTitleClick('hello there')}>
+        <Text
+          style={{
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: 20,
+            paddingVertical: 10,
+            paddingHorizontal: 10,
+          }}
+        >
+          {carouselTitle}
+        </Text>
+      </TouchableOpacity>
       <FlatList
         showsHorizontalScrollIndicator={true}
         data={movies}
         keyExtractor={(item) => item.imdbID}
         horizontal
         contentContainerStyle={{
-          alignItems: 'center',
+          alignItems: 'flex-start',
           marginVertical: SPACING,
           backgroundColor: 'black',
         }}
         renderItem={(item) => {
-          console.log('ITEM ===>', item);
           return (
             <View
               style={{
                 marginHorizontal: SPACING,
-                alignItems: 'center',
+                // justifyContent: 'flex-end',
+                // alignItems: 'baseline',
                 borderRadius: 10,
               }}
             >

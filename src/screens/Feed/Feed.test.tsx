@@ -3,7 +3,6 @@ import { render } from '@testing-library/react-native';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useGetTitles } from '../../hooks/useGetTitles';
-
 import { mockData } from '../../../mocks/api/mockData';
 import { IMockUseGetTitles } from '../../../mocks/types/IMockUseGetTitles';
 import { Feed } from '../Feed/Feed';

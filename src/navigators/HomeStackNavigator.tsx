@@ -5,10 +5,12 @@ import { Register } from '../screens/Register/Register';
 import { Welcome } from '../screens/Welcome/Welcome';
 import { Feed } from '../screens/Feed/Feed';
 import { Details } from '../screens/Details/Details';
+import { CarouselGrid } from '../screens/CarouselGrid/CarouselGrid';
 
 export type HomeStackParamList = {
   Feed: undefined;
   Details: { titleId: string };
+  CarouselGrid: { carouselId: string };
 };
 
 export const HomeStack = createStackNavigator<HomeStackParamList>();
@@ -28,6 +30,13 @@ export const HomeStackNavigator = () => {
         component={Details}
         options={{
           title: 'Movie Detail',
+        }}
+      />
+      <HomeStack.Screen
+        name='CarouselGrid'
+        component={CarouselGrid}
+        options={{
+          title: 'CarouselGrid',
         }}
       />
     </HomeStack.Navigator>
