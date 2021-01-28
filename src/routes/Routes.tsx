@@ -5,7 +5,7 @@ import { AppStackNavigator } from '../navigators/AppStackNavigator';
 import { AuthStackNavigator } from '../navigators/AuthStackNavigator';
 import { AuthContext, AuthProvider } from '../context/AuthContext';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Asset } from 'expo-asset';
+import { colors } from '../../utils/colors';
 
 export default function Routes() {
   const { user, login } = useContext(AuthContext);
@@ -35,20 +35,11 @@ export default function Routes() {
       </NavigationContainer>
     </View>
   );
-  // return (
-  //   <View style={styles.container}>
-  //     <NavigationContainer>
-  //       <AuthStackNavigator />
-  //     </NavigationContainer>
-  //   </View>
-  // );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
-    // alignItems: "center",
-    // justifyContent: "center",
+    backgroundColor: colors.backgroundColor,
   },
 });

@@ -1,13 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { AppStackNavigator } from './src/navigators/AppStackNavigator';
-import { AuthContext, AuthProvider } from './src/context/AuthContext';
-import AsyncStorage from '@react-native-community/async-storage';
-import { AuthStackNavigator } from './src/navigators/AuthStackNavigator';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { AuthProvider } from './src/context/AuthContext';
 import { Asset } from 'expo-asset';
 import AppLoading from 'expo-app-loading';
-import { Login } from './src/screens/Login/Login';
 import Routes from './src/routes/Routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -52,20 +47,4 @@ export default function App() {
       </AuthProvider>
     </QueryClientProvider>
   );
-  // return (
-  //   <View style={styles.container}>
-  //     <NavigationContainer>
-  //       <AuthStackNavigator />
-  //     </NavigationContainer>
-  //   </View>
-  // );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
-});

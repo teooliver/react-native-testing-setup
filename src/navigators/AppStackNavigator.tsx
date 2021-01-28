@@ -21,15 +21,26 @@ export const AppStack = createBottomTabNavigator<RootStackParamList>();
 
 export const AppStackNavigator = () => {
   return (
-    <AppStack.Navigator initialRouteName='Home'>
+    <AppStack.Navigator
+      initialRouteName='Home'
+      tabBarOptions={{
+        tabStyle: {
+          backgroundColor: 'black',
+        },
+        activeTintColor: 'white',
+        inactiveTintColor: 'red',
+        style: { borderTopColor: 'black' },
+      }}
+    >
       <AppStack.Screen
         name='Home'
         component={HomeStackNavigator}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => <Feather name='home' size={20} />,
+          tabBarIcon: ({ color, size }) => (
+            <Feather name='home' size={20} color={color} />
+          ),
         }}
-        bar-chart-2
       />
 
       <AppStack.Screen
@@ -38,7 +49,9 @@ export const AppStackNavigator = () => {
         // @ts-ignore
         options={{
           tabBarLabel: 'Search',
-          tabBarIcon: ({ color, size }) => <Feather name='search' size={20} />,
+          tabBarIcon: ({ color, size }) => (
+            <Feather name='search' size={20} color={color} />
+          ),
         }}
       />
       <AppStack.Screen
@@ -48,7 +61,7 @@ export const AppStackNavigator = () => {
         options={{
           tabBarLabel: 'Watchlist',
           tabBarIcon: ({ color, size }) => (
-            <Feather name='bookmark' size={20} />
+            <Feather name='bookmark' size={20} color={color} />
           ),
         }}
       />
@@ -58,7 +71,9 @@ export const AppStackNavigator = () => {
         // @ts-ignore
         options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => <Feather name='user' size={20} />,
+          tabBarIcon: ({ color, size }) => (
+            <Feather name='user' size={20} color={color} />
+          ),
         }}
       />
     </AppStack.Navigator>

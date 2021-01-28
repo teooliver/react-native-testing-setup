@@ -2,6 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { Dimensions, View, Image, Text, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { colors } from '../../../utils/colors';
 import { Title } from '../../../utils/types/titles';
 import { HomeStackParamList } from '../../navigators/HomeStackNavigator';
 
@@ -33,7 +34,11 @@ export const FilterCarousel: React.FC<Props> = ({
 
   return (
     <View
-      style={{ backgroundColor: 'black', marginVertical: 20, borderRadius: 10 }}
+      style={{
+        backgroundColor: colors.carouselBgColor,
+        marginVertical: 20,
+        borderRadius: 10,
+      }}
     >
       <TouchableOpacity onPress={() => handleCarouselTitleClick('hello there')}>
         <Text
@@ -56,7 +61,6 @@ export const FilterCarousel: React.FC<Props> = ({
         contentContainerStyle={{
           alignItems: 'flex-start',
           marginVertical: SPACING,
-          backgroundColor: 'black',
         }}
         renderItem={(item) => {
           return (
