@@ -7,12 +7,14 @@ interface AuthContextDefaults {
   user: User;
   login: (username: string, password: string) => void;
   logout: () => void;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
 export const AuthContext = createContext<AuthContextDefaults>({
   user: null,
   login: () => {},
   logout: () => {},
+  setUser: () => {},
 });
 
 interface AuthContextProps {
@@ -41,6 +43,7 @@ export const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
         user,
         login: login,
         logout: logout,
+        setUser,
       }}
     >
       {children}

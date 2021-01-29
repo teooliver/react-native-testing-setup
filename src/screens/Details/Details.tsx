@@ -37,7 +37,10 @@ export const Details: FC<Props> = ({ navigation, route }) => {
 
   if (isLoading)
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        testID='Spinner'
+      >
         <Text>LOADING</Text>
       </View>
     );
@@ -85,7 +88,7 @@ export const Details: FC<Props> = ({ navigation, route }) => {
             }}
           />
 
-          <TouchableOpacity onPress={onOpen}>
+          <TouchableOpacity onPress={onOpen} testID='share-icon'>
             <Feather name='share' size={30} color='white' />
           </TouchableOpacity>
         </View>

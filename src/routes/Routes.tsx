@@ -6,17 +6,17 @@ import { AuthStackNavigator } from '../navigators/AuthStackNavigator';
 import { AuthContext, AuthProvider } from '../context/AuthContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Host } from 'react-native-portalize';
-import { colors } from '../../utils/colors';
+import { colors } from '../../utils/design/colors';
 
 export default function Routes() {
-  const { user, login } = useContext(AuthContext);
+  const { user, login, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     AsyncStorage.getItem('user').then((userString) => {
       if (userString) {
-        // @ts-ignore
-        login();
+        // login();
+        setUser({ username: userString });
       }
       setLoading(false);
     });

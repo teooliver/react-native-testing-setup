@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { colors } from '../../../utils/colors';
+import { colors } from '../../../utils/design/colors';
 import { Title } from '../../../utils/types/titles';
 import { HomeStackParamList } from '../../navigators/HomeStackNavigator';
 
