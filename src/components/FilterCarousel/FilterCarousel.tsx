@@ -1,15 +1,25 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { Dimensions, View, Image, Text, TouchableOpacity } from 'react-native';
+import {
+  Dimensions,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  Animated,
+} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+
 import { colors } from '../../../utils/colors';
 import { Title } from '../../../utils/types/titles';
 import { HomeStackParamList } from '../../navigators/HomeStackNavigator';
 
 interface Props {
+  y: Animated.Value;
   movies: Title[];
   carouselTitle: string;
   navigation: StackNavigationProp<HomeStackParamList, 'Feed'>;
+  index: number;
   // route: RouteProp<RootStackParamList, 'Home'>;
 }
 
@@ -22,6 +32,8 @@ export const FilterCarousel: React.FC<Props> = ({
   movies,
   carouselTitle,
   navigation,
+  y,
+  index,
 }) => {
   const handlePosterClick = (titleId: string) => {
     console.log(titleId);
@@ -32,12 +44,45 @@ export const FilterCarousel: React.FC<Props> = ({
     navigation.navigate('CarouselGrid', { carouselId: carouselId });
   };
 
+  /* 
+  Animation based on
+  https://www.youtube.com/watch?v=NiFdK-s6OP8
+  
+  */
+
+  const position = Animated.subtract(index * CAROUSEL_HEIGHT, y);
+  const isDisappearing = -CAROUSEL_HEIGHT;
+  const isTop = 0;
+  const isBottom = height - CAROUSEL_HEIGHT;
+  const isAppearing = height;
+  const translateY = Animated.add(
+    y,
+    y.interpolate({
+      inputRange: [0, 0.00001 + index * CAROUSEL_HEIGHT],
+      outputRange: [0, -index * CAROUSEL_HEIGHT],
+      extrapolateRight: 'clamp',
+    })
+  );
+
+  const scale = position.interpolate({
+    inputRange: [isDisappearing, isTop, isBottom, isAppearing],
+    outputRange: [0.5, 1, 1, 0.5],
+    extrapolate: 'clamp',
+  });
+
+  const opacity = position.interpolate({
+    inputRange: [isDisappearing, isTop, isBottom, isAppearing],
+    outputRange: [0.5, 1, 1, 0.5],
+  });
+
   return (
-    <View
+    <Animated.View
       style={{
         backgroundColor: colors.carouselBgColor,
         marginVertical: 20,
         borderRadius: 10,
+        transform: [{ translateY: translateY }, { scale }],
+        opacity,
       }}
     >
       <TouchableOpacity onPress={() => handleCarouselTitleClick('hello there')}>
@@ -62,19 +107,15 @@ export const FilterCarousel: React.FC<Props> = ({
           alignItems: 'flex-start',
           marginVertical: SPACING,
         }}
-        renderItem={(item) => {
+        renderItem={({ item: title, index }) => {
           return (
             <View
               style={{
                 marginHorizontal: SPACING,
-                // justifyContent: 'flex-end',
-                // alignItems: 'baseline',
                 borderRadius: 10,
               }}
             >
-              <TouchableOpacity
-                onPress={() => handlePosterClick(item.item.imdbID)}
-              >
+              <TouchableOpacity onPress={() => handlePosterClick(title.imdbID)}>
                 <Image
                   resizeMethod='auto'
                   resizeMode='center'
@@ -83,7 +124,7 @@ export const FilterCarousel: React.FC<Props> = ({
                     height: 200,
                   }}
                   source={{
-                    uri: item.item.Poster,
+                    uri: title.Poster,
                   }}
                 />
                 <Text
@@ -93,13 +134,13 @@ export const FilterCarousel: React.FC<Props> = ({
                     width: 120,
                   }}
                 >
-                  {item.item.Title}
+                  {title.Title}
                 </Text>
               </TouchableOpacity>
             </View>
           );
         }}
       />
-    </View>
+    </Animated.View>
   );
 };

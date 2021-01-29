@@ -4,14 +4,15 @@ import { Search } from '../screens/Search/Search';
 import { Watchlist } from '../screens/Watchlist/Watchlist';
 import { Profile } from '../screens/Profile/Profile';
 import Feather from 'react-native-vector-icons/Feather';
-import { HomeStackNavigator } from './HomeStackNavigator';
+import { HomeStackNavigator, HomeStackParamList } from './HomeStackNavigator';
+import { NavigatorScreenParams } from '@react-navigation/native';
 
 /* 
 Specifying undefined means that the route doesn't have params. 
 A union type with undefined (e.g. SomeType | undefined) means that params are optional.
 */
 export type RootStackParamList = {
-  Home: undefined;
+  Home: NavigatorScreenParams<HomeStackParamList>;
   Profile: { userId: string };
   Watchlist: undefined;
   Search: undefined;
@@ -27,8 +28,8 @@ export const AppStackNavigator = () => {
         tabStyle: {
           backgroundColor: 'black',
         },
-        activeTintColor: 'white',
-        inactiveTintColor: 'red',
+        activeTintColor: 'red',
+        inactiveTintColor: 'white',
         style: { borderTopColor: 'black' },
       }}
     >

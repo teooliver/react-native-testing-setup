@@ -1,7 +1,14 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  StatusBar,
+} from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Feather from 'react-native-vector-icons/Feather';
 import { useGetTitles } from '../../hooks/useGetTitles';
@@ -30,7 +37,7 @@ export const CarouselGrid: FC<CarouselGridProps> = ({ navigation }) => {
 
   if (isSuccess) {
     return (
-      <ScrollView style={{ marginTop: 40 }}>
+      <ScrollView style={{ marginTop: StatusBar.currentHeight || 42 }}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{

@@ -5,6 +5,7 @@ import { AppStackNavigator } from '../navigators/AppStackNavigator';
 import { AuthStackNavigator } from '../navigators/AuthStackNavigator';
 import { AuthContext, AuthProvider } from '../context/AuthContext';
 import AsyncStorage from '@react-native-community/async-storage';
+import { Host } from 'react-native-portalize';
 import { colors } from '../../utils/colors';
 
 export default function Routes() {
@@ -14,6 +15,7 @@ export default function Routes() {
   useEffect(() => {
     AsyncStorage.getItem('user').then((userString) => {
       if (userString) {
+        // @ts-ignore
         login();
       }
       setLoading(false);
@@ -31,7 +33,7 @@ export default function Routes() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        {user ? <AppStackNavigator /> : <AuthStackNavigator />}
+        <Host>{user ? <AppStackNavigator /> : <AuthStackNavigator />}</Host>
       </NavigationContainer>
     </View>
   );
