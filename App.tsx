@@ -5,6 +5,7 @@ import { Asset } from 'expo-asset';
 import AppLoading from 'expo-app-loading';
 import Routes from './src/routes/Routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 function cacheImages(images: any[]) {
   return images.map((image) => {
@@ -43,7 +44,9 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Routes />
+        <PaperProvider>
+          <Routes />
+        </PaperProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

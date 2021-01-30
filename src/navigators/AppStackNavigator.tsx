@@ -6,6 +6,8 @@ import { Profile } from '../screens/Profile/Profile';
 import Feather from 'react-native-vector-icons/Feather';
 import { HomeStackNavigator, HomeStackParamList } from './HomeStackNavigator';
 import { NavigatorScreenParams } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 /* 
 Specifying undefined means that the route doesn't have params. 
@@ -18,12 +20,13 @@ export type RootStackParamList = {
   Search: undefined;
 };
 
-export const AppStack = createBottomTabNavigator<RootStackParamList>();
+export const AppStack = createMaterialTopTabNavigator<RootStackParamList>();
 
 export const AppStackNavigator = () => {
   return (
     <AppStack.Navigator
       initialRouteName='Home'
+      tabBarPosition='bottom'
       tabBarOptions={{
         tabStyle: {
           backgroundColor: 'black',
@@ -31,6 +34,10 @@ export const AppStackNavigator = () => {
         activeTintColor: 'red',
         inactiveTintColor: 'white',
         style: { borderTopColor: 'black' },
+        showIcon: true,
+        labelStyle: {
+          fontSize: 10,
+        },
       }}
     >
       <AppStack.Screen
@@ -38,7 +45,7 @@ export const AppStackNavigator = () => {
         component={HomeStackNavigator}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <Feather name='home' size={20} color={color} />
           ),
         }}
@@ -50,7 +57,7 @@ export const AppStackNavigator = () => {
         // @ts-ignore
         options={{
           tabBarLabel: 'Search',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <Feather name='search' size={20} color={color} />
           ),
         }}
@@ -61,7 +68,7 @@ export const AppStackNavigator = () => {
         // @ts-ignore
         options={{
           tabBarLabel: 'Watchlist',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <Feather name='bookmark' size={20} color={color} />
           ),
         }}
@@ -72,7 +79,7 @@ export const AppStackNavigator = () => {
         // @ts-ignore
         options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <Feather name='user' size={20} color={color} />
           ),
         }}
