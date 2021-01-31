@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
 import { styles } from './styles';
-import Feather from 'react-native-vector-icons/Feather';
+import { AuthStackParamList } from '../../navigators/AuthStackNavigator';
 
 interface WelcomeProps {
   navigation: StackNavigationProp<AuthStackParamList, 'Welcome'>;

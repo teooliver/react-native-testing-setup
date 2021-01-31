@@ -1,12 +1,10 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Search } from '../screens/Search/Search';
 import { Watchlist } from '../screens/Watchlist/Watchlist';
 import { Profile } from '../screens/Profile/Profile';
 import Feather from 'react-native-vector-icons/Feather';
 import { HomeStackNavigator, HomeStackParamList } from './HomeStackNavigator';
 import { NavigatorScreenParams } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 /* 
@@ -38,7 +36,9 @@ export const AppStackNavigator = () => {
         labelStyle: {
           fontSize: 10,
         },
+        pressOpacity: 1,
       }}
+      swipeEnabled={false}
     >
       <AppStack.Screen
         name='Home'
@@ -48,40 +48,41 @@ export const AppStackNavigator = () => {
           tabBarIcon: ({ color }) => (
             <Feather name='home' size={20} color={color} />
           ),
+          tabBarTestID: 'home-tab',
         }}
       />
 
       <AppStack.Screen
         name='Search'
         component={Search}
-        // @ts-ignore
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ color }) => (
             <Feather name='search' size={20} color={color} />
           ),
+          tabBarTestID: 'search-tab',
         }}
       />
       <AppStack.Screen
         name='Watchlist'
         component={Watchlist}
-        // @ts-ignore
         options={{
           tabBarLabel: 'Watchlist',
           tabBarIcon: ({ color }) => (
             <Feather name='bookmark' size={20} color={color} />
           ),
+          tabBarTestID: 'watchlist-tab',
         }}
       />
       <AppStack.Screen
         name='Profile'
         component={Profile}
-        // @ts-ignore
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (
             <Feather name='user' size={20} color={color} />
           ),
+          tabBarTestID: 'profile-tab',
         }}
       />
     </AppStack.Navigator>

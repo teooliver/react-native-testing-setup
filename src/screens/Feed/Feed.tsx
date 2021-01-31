@@ -1,9 +1,8 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext } from 'react';
 import { View, Text, Button, ActivityIndicator, Animated } from 'react-native';
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
-import { Titles } from '../../../utils/types/titles';
+import { ScrollView } from 'react-native-gesture-handler';
 import { FilterCarousel } from '../../components/FilterCarousel/FilterCarousel';
 import { AuthContext } from '../../context/AuthContext';
 import { useGetTitles } from '../../hooks/useGetTitles';
@@ -25,7 +24,7 @@ const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
 export const Feed: FC<Props> = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
-  const { data: titles, isSuccess, isLoading, isError } = useGetTitles();
+  const { data: titles, isSuccess, isLoading } = useGetTitles();
 
   // Animation
   const y = new Animated.Value(0);

@@ -1,15 +1,13 @@
+// @ts-nocheck
 import { NavigationContainer } from '@react-navigation/native';
 import { render } from '@testing-library/react-native';
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { useGetTitles } from '../../hooks/useGetTitles';
 import { mockData } from '../../../mocks/api/mockData';
 import { IMockUseGetTitles } from '../../../mocks/types/IMockUseGetTitles';
 import { Feed } from '../Feed/Feed';
 
 // const mockedUseGetTitles = useGetTitles as jest.Mock;
-
-const queryClient = new QueryClient();
 
 // jest.mock('../../hooks/useGetTitles', () => ({
 //   useGetTitles: jest.fn(),
@@ -53,7 +51,6 @@ it('Renders Home without crashing', async () => {
 });
 
 it('Shows spinner while loading', async () => {
-  // @ts-ignore
   useGetTitles.mockImplementation(
     (): IMockUseGetTitles => ({
       data: mockData,

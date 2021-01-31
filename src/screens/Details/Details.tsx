@@ -35,6 +35,17 @@ export const Details: FC<Props> = ({ navigation, route }) => {
     modalizeRef.current?.open();
   };
 
+  if (isError) {
+    return (
+      <View
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        testID='error'
+      >
+        <Text>Something went wrong</Text>
+      </View>
+    );
+  }
+
   if (isLoading)
     return (
       <View
@@ -114,5 +125,7 @@ export const Details: FC<Props> = ({ navigation, route }) => {
       </>
     );
   }
-  return null;
+
+  // return null;
+  throw new Error('This should be impossible');
 };

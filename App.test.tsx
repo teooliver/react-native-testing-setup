@@ -1,21 +1,13 @@
+// @ts-nocheck
+
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  waitFor,
-  cleanup,
-} from '@testing-library/react-native';
+import { render, fireEvent, cleanup } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppStackNavigator } from './src/navigators/AppStackNavigator';
 import { AuthStackNavigator } from './src/navigators/AuthStackNavigator';
-
-import App from './App';
-import Test from './src/screens/Test';
-import { Home } from './src/screens/Feed/Feed';
 import { Details } from './src/screens/Details/Details';
-import { AuthProvider, AuthContext } from './src/context/AuthContext';
+import { AuthProvider } from './src/context/AuthContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 const queryClient = new QueryClient();
 

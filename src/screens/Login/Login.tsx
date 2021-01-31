@@ -23,6 +23,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import { styles } from './styles';
 import { AuthContext } from '../../context/AuthContext';
 import { ScrollView } from 'react-native-gesture-handler';
+import { AuthStackParamList } from '../../navigators/AuthStackNavigator';
 
 interface Props {
   navigation: StackNavigationProp<AuthStackParamList, 'Login'>;
@@ -82,22 +83,12 @@ export const Login: FC<Props> = ({ navigation }) => {
     login(formData.email, formData.password);
   };
 
-  // const handleValidateUser = (text: string) => {
-  //   if (text.length >= 4) {
-  //     setIsValidUser(true);
-  //   } else {
-  //     setIsValidUser(false);
-  //   }
-  // };
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       style={styles.container}
       testID='Login'
     >
-      {/* <View style={styles.container}> */}
-
       <StatusBar backgroundColor='#009387' barStyle='light-content' />
       <TouchableOpacity
         onPress={() => navigation.goBack()}

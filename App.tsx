@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
 import { AuthProvider } from './src/context/AuthContext';
 import { Asset } from 'expo-asset';
 import AppLoading from 'expo-app-loading';
 import Routes from './src/routes/Routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Provider as PaperProvider } from 'react-native-paper';
 
 function cacheImages(images: any[]) {
   return images.map((image) => {
@@ -44,9 +42,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <PaperProvider>
-          <Routes />
-        </PaperProvider>
+        <Routes />
       </AuthProvider>
     </QueryClientProvider>
   );

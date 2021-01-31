@@ -9,7 +9,6 @@ import {
   Animated,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-
 import { colors } from '../../../utils/design/colors';
 import { Title } from '../../../utils/types/titles';
 import { HomeStackParamList } from '../../navigators/HomeStackNavigator';
@@ -36,7 +35,6 @@ export const FilterCarousel: React.FC<Props> = ({
   index,
 }) => {
   const handlePosterClick = (titleId: string) => {
-    console.log(titleId);
     navigation.navigate('Details', { titleId: titleId });
   };
 

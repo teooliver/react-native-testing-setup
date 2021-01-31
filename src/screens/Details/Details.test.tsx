@@ -1,18 +1,16 @@
+// @ts-nocheck
 import { NavigationContainer } from '@react-navigation/native';
 import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { useGetTitleById } from '../../hooks/useGetTitleById';
 import { mockData } from '../../../mocks/api/mockData';
 import { IMockUseGetTitles } from '../../../mocks/types/IMockUseGetTitles';
-import { Feed } from '../Feed/Feed';
 import { Details } from './Details';
-import { Host, Portal } from 'react-native-portalize';
+import { Host } from 'react-native-portalize';
 
 jest.mock('../../hooks/useGetTitleById.tsx');
 
 it('Renders Title Details Screen without crashing', async () => {
-  // @ts-ignore
   useGetTitleById.mockImplementation(
     (): IMockUseGetTitles => ({
       data: mockData.Search[0],
@@ -38,7 +36,6 @@ it('Renders Title Details Screen without crashing', async () => {
 });
 
 it('Shows spinner while loading title', async () => {
-  // @ts-ignore
   useGetTitleById.mockImplementation(
     (): IMockUseGetTitles => ({
       data: mockData.Search[0],
@@ -63,7 +60,6 @@ it('Shows spinner while loading title', async () => {
 });
 
 it('Should open share title modal', async () => {
-  // @ts-ignore
   useGetTitleById.mockImplementation(
     (): IMockUseGetTitles => ({
       data: mockData.Search[0],
@@ -73,10 +69,14 @@ it('Should open share title modal', async () => {
     })
   );
 
+  // const route = { route: jest.fn() };
+
   const component = (
     <NavigationContainer>
       <Host>
-        <Details route={{ params: { titleId: 'tt0167260' } }} />
+        <Details
+          route={{ key: '', name: 'Details', params: { titleId: 'tt0167260' } }}
+        />
       </Host>
     </NavigationContainer>
   );

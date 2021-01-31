@@ -1,23 +1,19 @@
 import React, { FC, useState } from 'react';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-
 import {
   View,
   Text,
   TouchableOpacity,
   TextInput,
-  Platform,
-  StyleSheet,
   StatusBar,
-  Dimensions,
-  Alert,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { styles } from './styles';
+import { AuthStackParamList } from '../../navigators/AuthStackNavigator';
 
 interface Props {
   navigation: StackNavigationProp<AuthStackParamList, 'Login'>;
@@ -32,7 +28,7 @@ export const Register: FC<Props> = ({ navigation }) => {
     confirmPassword: '',
   });
   const [isValid, setIsValid] = useState(false);
-  const [passwordMatch, setPasswordMatch] = useState(false);
+  const [] = useState(false);
 
   const handleEmail = (email: string) => {
     if (email.length !== 0) {
@@ -49,14 +45,6 @@ export const Register: FC<Props> = ({ navigation }) => {
 
   const handleConfirmPassword = (password: string) => {
     setFormData({ ...formData, confirmPassword: password });
-  };
-
-  const handleSubmit = () => {
-    if (formData.password !== formData.confirmPassword) {
-      console.log('all good');
-    } else {
-      console.log('passwords dont match');
-    }
   };
 
   return (
