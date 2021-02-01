@@ -18,11 +18,11 @@ export type RootStackParamList = {
   Search: undefined;
 };
 
-export const AppStack = createMaterialTopTabNavigator<RootStackParamList>();
+export const AppTabs = createMaterialTopTabNavigator<RootStackParamList>();
 
-export const AppStackNavigator = () => {
+export const AppTabNavigator = () => {
   return (
-    <AppStack.Navigator
+    <AppTabs.Navigator
       initialRouteName='Home'
       tabBarPosition='bottom'
       tabBarOptions={{
@@ -40,7 +40,7 @@ export const AppStackNavigator = () => {
       }}
       swipeEnabled={false}
     >
-      <AppStack.Screen
+      <AppTabs.Screen
         name='Home'
         component={HomeStackNavigator}
         options={{
@@ -52,7 +52,7 @@ export const AppStackNavigator = () => {
         }}
       />
 
-      <AppStack.Screen
+      <AppTabs.Screen
         name='Search'
         component={Search}
         options={{
@@ -63,7 +63,7 @@ export const AppStackNavigator = () => {
           tabBarTestID: 'search-tab',
         }}
       />
-      <AppStack.Screen
+      <AppTabs.Screen
         name='Watchlist'
         component={Watchlist}
         options={{
@@ -74,7 +74,7 @@ export const AppStackNavigator = () => {
           tabBarTestID: 'watchlist-tab',
         }}
       />
-      <AppStack.Screen
+      <AppTabs.Screen
         name='Profile'
         component={Profile}
         options={{
@@ -85,6 +85,6 @@ export const AppStackNavigator = () => {
           tabBarTestID: 'profile-tab',
         }}
       />
-    </AppStack.Navigator>
+    </AppTabs.Navigator>
   );
 };

@@ -3,7 +3,7 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { AppStackNavigator } from './src/navigators/AppStackNavigator';
+import { AppTabNavigator } from './src/navigators/AppTabNavigator';
 import { AuthStackNavigator } from './src/navigators/AuthStackNavigator';
 import { Details } from './src/screens/Details/Details';
 import { AuthProvider } from './src/context/AuthContext';
@@ -58,7 +58,7 @@ describe('Router', () => {
     const component = (
       <QueryClientProvider client={queryClient}>
         <NavigationContainer>
-          <AppStackNavigator />
+          <AppTabNavigator />
         </NavigationContainer>
       </QueryClientProvider>
     );

@@ -1,14 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  StatusBar,
-} from 'react-native';
+import React, { FC, useEffect } from 'react';
+import { View, Text, Image, StatusBar } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Feather from 'react-native-vector-icons/Feather';
 import { useGetTitles } from '../../hooks/useGetTitles';
@@ -20,11 +13,15 @@ interface CarouselGridProps {
 }
 
 export const CarouselGrid: FC<CarouselGridProps> = ({ navigation }) => {
-  const { data: titles, isSuccess, isLoading, isError } = useGetTitles();
+  const { data: titles, isSuccess, isLoading } = useGetTitles();
 
   const handlePosterClick = (titleId: string) => {
     navigation.navigate('Details', { titleId: titleId });
   };
+
+  useEffect(() => {
+    console.log('viewing GRID');
+  }, []);
 
   if (isLoading) {
     return (
@@ -45,7 +42,10 @@ export const CarouselGrid: FC<CarouselGridProps> = ({ navigation }) => {
         </TouchableOpacity>
         <View style={styles.container}>
           {titles?.Search.map((title) => (
-            <TouchableOpacity onPress={() => handlePosterClick(title.imdbID)}>
+            <TouchableOpacity
+              onPress={() => handlePosterClick(title.imdbID)}
+              key={title.imdbID}
+            >
               <Image
                 resizeMethod='auto'
                 resizeMode='center'

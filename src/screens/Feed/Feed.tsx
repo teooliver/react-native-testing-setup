@@ -1,6 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import { View, Text, Button, ActivityIndicator, Animated } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { FilterCarousel } from '../../components/FilterCarousel/FilterCarousel';
@@ -53,7 +53,7 @@ export const Feed: FC<Props> = ({ navigation }) => {
             index={0}
           />
         )}
-        {isSuccess && titles?.Search && (
+        {/* {isSuccess && titles?.Search && (
           <FilterCarousel
             movies={titles.Search}
             carouselTitle='Most Recommended'
@@ -97,7 +97,7 @@ export const Feed: FC<Props> = ({ navigation }) => {
             y={y}
             index={5}
           />
-        )}
+        )} */}
 
         {/* <Button
           title='Go to Details'

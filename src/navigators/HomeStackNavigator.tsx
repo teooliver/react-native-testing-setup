@@ -12,7 +12,19 @@ export type HomeStackParamList = {
 
 export const HomeStack = createStackNavigator<HomeStackParamList>();
 
-export const HomeStackNavigator = () => {
+// createMaterialTopTabNavigator doesnt have types at the moment
+export const HomeStackNavigator = ({ navigation }: any) => {
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('tabPress', (e: any) => {
+      // Prevent default behavior
+      e.preventDefault();
+      // Do something manually
+      navigation.navigate('Feed');
+      // ...
+    });
+
+    return unsubscribe;
+  }, [navigation]);
   return (
     <HomeStack.Navigator initialRouteName='Feed' headerMode='none'>
       <HomeStack.Screen

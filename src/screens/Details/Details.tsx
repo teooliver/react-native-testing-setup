@@ -1,6 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -112,7 +112,6 @@ export const Details: FC<Props> = ({ navigation, route }) => {
               marginHorizontal: 10,
               padding: 5,
               backgroundColor: 'rgba(30,30,30,0.95)',
-              // flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
             }}
