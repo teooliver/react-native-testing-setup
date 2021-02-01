@@ -9,6 +9,7 @@ function cacheImages(images: any[]) {
   return images.map((image) => {
     if (typeof image === 'string') {
       // @ts-ignore
+      // eslint-disable-next-line no-undef
       return Image.prefetch(image);
     } else {
       return Asset.fromModule(image).downloadAsync();

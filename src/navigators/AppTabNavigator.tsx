@@ -7,8 +7,8 @@ import { HomeStackNavigator, HomeStackParamList } from './HomeStackNavigator';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-/* 
-Specifying undefined means that the route doesn't have params. 
+/*
+Specifying undefined means that the route doesn't have params.
 A union type with undefined (e.g. SomeType | undefined) means that params are optional.
 */
 export type RootStackParamList = {
