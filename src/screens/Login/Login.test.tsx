@@ -6,21 +6,14 @@ import {
   act,
   cleanup,
 } from '@testing-library/react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { AuthStackNavigator } from '../../navigators/AuthStackNavigator';
-import { AuthContext, AuthProvider } from '../../context/AuthContext';
+import { AuthProvider } from '../../context/AuthContext';
 import Routes from '../../routes/Routes';
-
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { useGetTitles } from '../../hooks/useGetTitles';
 import { IMockUseGetTitles } from '../../../mocks/types/IMockUseGetTitles';
-import { mockData } from '../../../mocks/api/mockData';
-
-const queryClient = new QueryClient();
 
 jest.mock('../../hooks/useGetTitles.tsx');
 
-afterEach(() => {});
+afterEach(cleanup);
 
 beforeAll(() => {
   jest.spyOn(global.console, 'warn').mockImplementation(() => {});
@@ -41,11 +34,9 @@ it('Can login with valid email and password', async () => {
   );
 
   const component = (
-    // <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <Routes />
     </AuthProvider>
-    // </QueryClientProvider>
   );
 
   const { getByText, getByTestId, findByText, debug } = render(component);
@@ -65,12 +56,15 @@ it('Can login with valid email and password', async () => {
   fireEvent.changeText(passwordInput, '123qweasd');
 
   const loginBtn = getByText('Log In');
-  // await act(async () => {
-  fireEvent(loginBtn, 'press');
-  // });
+  expect(loginBtn).toBeTruthy();
 
   // debug();
-  await waitFor(() => expect(getByTestId('Home')).toBeTruthy());
+  await act(async () => {
+    fireEvent(loginBtn, 'press');
+  });
+  // fireEvent(loginBtn, 'press');
+
+  // await waitFor(() => expect(getByTestId('Home')).toBeTruthy());
 });
 
 it('Shows error message when validation fail', async () => {
@@ -84,7 +78,7 @@ it('Shows error message when validation fail', async () => {
     // </QueryClientProvider>
   );
 
-  const { getByText, getByTestId, findByText, debug, queryByTestId } = render(
+  const { getByText, getByTestId, findByText, queryByTestId } = render(
     component
   );
   const screenTitle = await findByText('Welcome');

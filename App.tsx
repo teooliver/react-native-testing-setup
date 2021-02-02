@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AuthProvider } from './src/context/AuthContext';
 import { Asset } from 'expo-asset';
 import AppLoading from 'expo-app-loading';
-import Routes from './src/routes/Routes';
+import { Routes } from './src/routes/Routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 function cacheImages(images: any[]) {

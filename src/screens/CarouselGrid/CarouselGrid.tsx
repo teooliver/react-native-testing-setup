@@ -19,10 +19,6 @@ export const CarouselGrid: FC<CarouselGridProps> = ({ navigation }) => {
     navigation.navigate('Details', { titleId: titleId });
   };
 
-  useEffect(() => {
-    console.log('viewing GRID');
-  }, []);
-
   if (isLoading) {
     return (
       <View>

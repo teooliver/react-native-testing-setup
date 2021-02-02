@@ -11,8 +11,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { Host } from 'react-native-portalize';
 import { colors } from '../../utils/design/colors';
 
-export default function Routes() {
-  const { user, login, setUser } = useContext(AuthContext);
+export function Routes() {
+  const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
 
   const routeNameRef = React.useRef<NavigationContainerRef>(null);
@@ -26,7 +26,10 @@ export default function Routes() {
       }
       setLoading(false);
     });
-  }, []);
+  }, [setUser]);
+
+  console.log(loading);
+  console.log('USER=>>>>', user);
 
   if (loading) {
     return (

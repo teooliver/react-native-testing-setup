@@ -6,7 +6,7 @@ interface Props {}
 export const Search: React.FC<Props> = ({}) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile</Text>
+      <Text>Search</Text>
     </View>
   );
 };
