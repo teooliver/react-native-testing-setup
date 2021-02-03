@@ -13,7 +13,7 @@ interface WelcomeProps {
 
 export const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   return (
-    <View style={{ ...styles.container, padding: 20 }}>
+    <View style={{ ...styles.container, padding: 20 }} testID='welcome'>
       {/* <View style={styles.header}> */}
       <StatusBar backgroundColor='#009387' barStyle='light-content' />
       <Text style={{ ...styles.text_header, marginTop: 40 }}>Welcome</Text>

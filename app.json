@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "test-to",
-    "slug": "test-to",
+    "name": "bob-testing-setup",
+    "slug": "bob-testing-setup",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,19 +13,17 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.bobshow.test-to"
+      "bundleIdentifier": "com.bobshow.bob-testing-setup"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "package": "com.bobshow.testto"
+      "package": "com.bobshow.bob-testing-setup"
     },
     "web": {
       "favicon": "./assets/favicon.png"

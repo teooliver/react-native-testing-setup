@@ -51,7 +51,9 @@
     "@types/jest": "^26.0.20",
     "@types/react": "^17.0.0",
     "@types/react-native": "^0.63.45",
+    "detox": "^18.2.2",
     "eslint": "^7.19.0",
+    "jest-circus": "^26.6.3",
     "jest-expo": "^40.0.0",
     "prettier": "^2.2.1",
     "ts-jest": "^26.4.4",
@@ -87,5 +89,16 @@
       "node"
     ],
     "verbose": true
+  },
+  "detox": {
+    "test-runner": "jest",
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "./e2e-builds",
+        "build": "xcodebuild -project ios/bob-testing-setup.xcodeproj -scheme bob-testing-setup -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
+      }
+    }
   }
 }
