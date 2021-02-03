@@ -9,11 +9,11 @@ describe('Login Workflow', () => {
     await device.reloadReactNative();
   });
 
-  it('should have welcome screen', async () => {
+  it.skip('should have welcome screen', async () => {
     await expect(element(by.text('Welcome'))).toBeVisible();
   });
 
-  it('should show Login screen on login button tap', async () => {
+  it.skip('should show Login screen on login button tap', async () => {
     await element(by.text('Sign In')).tap();
     await expect(element(by.text('Login'))).toBeVisible();
   });
@@ -26,5 +26,11 @@ describe('Login Workflow', () => {
     await element(by.text('Log In')).tap();
     await expect(element(by.text('Wrong Input!'))).toBeVisible();
     await element(by.text('Okay')).tap();
+    await element(by.id('emailInput')).typeText('teo@test.com');
+    await element(by.id('passwordInput')).typeText('123qweasd');
+    await element(by.text('Log In')).tap();
+    await expect(element(by.id('Home'))).toBeVisible();
+    await element(by.id('search-tab')).tap();
+    await expect(element(by.text('Search'))).toBeVisible();
   });
 });

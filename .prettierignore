@@ -3,5 +3,4 @@ build
 .expo
 .expo-shared
 yarn.lock
-.detoxrc.json
 yarn-error.log
