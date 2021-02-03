@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/images/omid-armin-i15TJ2zBh3c-unsplash.jpg",
+      "image": "./assets/images/omid-armin-i15TJ2zBh3c-unsplash.png",
       "resizeMode": "cover",
       "backgroundColor": "#000000"
     },

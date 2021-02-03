@@ -24,7 +24,7 @@ export default function App() {
 
   const loadAssetsAsync = async () => {
     const imageAssets = cacheImages([
-      require('./assets/images/omid-armin-i15TJ2zBh3c-unsplash.jpg'),
+      require('./assets/images/omid-armin-i15TJ2zBh3c-unsplash.png'),
     ]);
 
     await Promise.all([...imageAssets]);
