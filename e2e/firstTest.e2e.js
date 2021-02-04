@@ -32,5 +32,7 @@ describe('Login Workflow', () => {
     await expect(element(by.id('Home'))).toBeVisible();
     await element(by.id('search-tab')).tap();
     await expect(element(by.text('Search'))).toBeVisible();
+    await element(by.id('home-tab')).tap();
+    await expect(element(by.id('Home'))).toBeVisible();
   });
 });
