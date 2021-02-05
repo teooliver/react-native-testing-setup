@@ -12,7 +12,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { colors } from '../../../utils/design/colors';
 import { Title } from '../../../utils/types/titles';
 import { HomeStackParamList } from '../../navigators/HomeStackNavigator';
-
+import Constants from 'expo-constants';
 interface Props {
   y: Animated.Value;
   movies: Title[];
@@ -73,6 +73,15 @@ export const FilterCarousel: React.FC<Props> = ({
     outputRange: [0.5, 1, 1, 0.5],
   });
 
+  // console.log(Constants.manifest.extra.showCarousell);
+  // if (!Constants.manifest.extra.showCarousell) {
+  //   return (
+  //     <View>
+  //       <Text>SHOW CAROUSELL VAR WORKING</Text>
+  //     </View>
+  //   );
+  // }
+
   return (
     <Animated.View
       style={{
@@ -97,6 +106,7 @@ export const FilterCarousel: React.FC<Props> = ({
         </Text>
       </TouchableOpacity>
       <FlatList
+        testID='carousel-id'
         showsHorizontalScrollIndicator={true}
         data={movies}
         keyExtractor={(item) => item.imdbID}
@@ -106,8 +116,18 @@ export const FilterCarousel: React.FC<Props> = ({
           marginVertical: SPACING,
         }}
         renderItem={({ item: title, index }) => {
+          console.log('Length=>>', movies.length);
+          console.log(index);
+          let lastItem = false;
+          if (movies.length - 1 - index === 0) {
+            lastItem = true;
+          }
+
+          console.log(lastItem);
+
           return (
             <View
+              testID={lastItem ? 'last-carousel-item' : 'carousel-item'}
               style={{
                 marginHorizontal: SPACING,
                 borderRadius: 10,

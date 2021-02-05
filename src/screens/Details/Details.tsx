@@ -68,6 +68,7 @@ export const Details: FC<Props> = ({ navigation, route }) => {
             blurRadius={30}
           />
           <TouchableOpacity
+            testID='navigate-back-btn'
             onPress={() => navigation.goBack()}
             style={{
               position: 'absolute',

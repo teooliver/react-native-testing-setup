@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bob-testing-setup",
-    "slug": "bob-testing-setup",
+    "name": "bob_testing_setup",
+    "slug": "bob_testing_setup",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,14 +16,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.bobshow.bob-testing-setup"
+      "bundleIdentifier": "com.bobshow.bobtestingsetup"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "package": "com.bobshow.bob-testing-setup"
+      "package": "com.bobshow.bob_testing_setup"
     },
     "web": {
       "favicon": "./assets/favicon.png"
