@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-describe('Login Workflow', () => {
+describe('Login flow', () => {
   beforeAll(async () => {
     await device.launchApp();
   });
@@ -18,7 +18,7 @@ describe('Login Workflow', () => {
     await expect(element(by.text('Login'))).toBeVisible();
   });
 
-  it('should show error message and alert if input doesnt pass validation', async () => {
+  it('should show error message and alert if inputs are not valid', async () => {
     await element(by.text('Sign In')).tap();
     await expect(element(by.text('Login'))).toBeVisible();
     await expect(element(by.text('Your Email'))).toBeVisible();
@@ -39,7 +39,7 @@ describe('Login Workflow', () => {
     await element(by.text('Okay')).tap();
   });
 
-  it('User Journey 01', async () => {
+  it('User Journey 01 - Login, TabNavigation, Movie Details/Share Movie', async () => {
     await element(by.text('Sign In')).tap();
     await expect(element(by.text('Login'))).toBeVisible();
     await expect(element(by.text('Your Email'))).toBeVisible();
